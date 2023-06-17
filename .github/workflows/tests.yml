@@ -12,7 +12,7 @@ jobs:
       CXX: clang++
 
     steps:
-      - name: Setup dependencies
+    - name: Setup dependencies
       run: |
         sudo apt-get install -y clang-tidy python3
         git clone https://github.com/Microsoft/vcpkg.git
