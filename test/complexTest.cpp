@@ -329,14 +329,13 @@ TEST_CASE("Binary operations") {
     }
 
     SECTION("Random /=") {
+        // clang-format off
         constexpr std::size_t TESTS_NUMBER = 10;
         auto rnd_real1                     = GENERATE(take(TESTS_NUMBER, random(min_value, max_value)));
         auto rnd_imag1                     = GENERATE(take(TESTS_NUMBER, random(min_value, max_value)));
-        auto rnd_real2                     = GENERATE(
-            take(TESTS_NUMBER, filter([](int rnd_real2) { return rnd_real2 != 0; }, random(min_value, max_value))));
-        auto rnd_imag2 = GENERATE(
-            take(TESTS_NUMBER, filter([](int rnd_imag2) { return rnd_imag2 != 0; }, random(min_value, max_value))));
-
+        auto rnd_real2                     = GENERATE(take(TESTS_NUMBER, filter([](int rnd_real2) { return rnd_real2 != 0; }, random(min_value, max_value))));
+        auto rnd_imag2                     = GENERATE(take(TESTS_NUMBER, filter([](int rnd_imag2) { return rnd_imag2 != 0; }, random(min_value, max_value))));
+        // clang-format on
         std::complex ideal1(rnd_real1, rnd_imag1);
         std::complex ideal2(rnd_real2, rnd_imag2);
 
@@ -360,14 +359,13 @@ TEST_CASE("Binary operations") {
     }
 
     SECTION("Random /") {
+        // clang-format off
         constexpr std::size_t TESTS_NUMBER = 10;
         auto rnd_real1                     = GENERATE(take(TESTS_NUMBER, random(min_value, max_value)));
         auto rnd_imag1                     = GENERATE(take(TESTS_NUMBER, random(min_value, max_value)));
-        auto rnd_real2                     = GENERATE(
-            take(TESTS_NUMBER, filter([](int rnd_real2) { return rnd_real2 != 0; }, random(min_value, max_value))));
-        auto rnd_imag2 = GENERATE(
-            take(TESTS_NUMBER, filter([](int rnd_imag2) { return rnd_imag2 != 0; }, random(min_value, max_value))));
-
+        auto rnd_real2                     = GENERATE(take(TESTS_NUMBER, filter([](int rnd_real2) { return rnd_real2 != 0; }, random(min_value, max_value))));
+        auto rnd_imag2                     = GENERATE(take(TESTS_NUMBER, filter([](int rnd_imag2) { return rnd_imag2 != 0; }, random(min_value, max_value))));
+        // clang-format on
         std::complex ideal1(rnd_real1, rnd_imag1);
         std::complex ideal2(rnd_real2, rnd_imag2);
 

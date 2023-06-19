@@ -14,7 +14,7 @@ std::string Const::str() const {
     return const_value.str();
 }
 
-Variable::Variable(std::string variable_name) : variable_name(variable_name) {}
+Variable::Variable(std::string&& variable_name) : variable_name(std::move(variable_name)) {}
 
 Complex Variable::eval(const std::unordered_map<std::string, Complex> values) const {
     return values.at(variable_name);

@@ -18,23 +18,23 @@ public:
 
     Complex& operator=(Complex&& value) = default;
 
-    double real();
+    double real() const;
 
-    double imag();
+    double imag() const;
 
-    double abs();
+    double abs() const;
 
     std::string str() const;
 
-    Complex operator-();
-    Complex operator~();
+    Complex operator-() const;
+    Complex operator~() const;
 
     Complex& operator+=(const Complex& number);
     Complex& operator-=(const Complex& number);
     Complex& operator*=(const Complex& number);
     Complex& operator/=(const Complex& number);
 
-    Complex inverse();
+    Complex inverse() const;
 
     friend Complex operator+(const Complex& left, const Complex& right);
     friend Complex operator-(const Complex& left, const Complex& right);
@@ -63,4 +63,4 @@ bool operator!=(const Complex& left, const Complex& right);
 
 std::ostream& operator<<(std::ostream& out, const Complex& number);
 
-#endif COMPLEX_COMPLEX_HPP
+#endif  // COMPLEX_COMPLEX_HPP

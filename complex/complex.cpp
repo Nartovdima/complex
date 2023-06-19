@@ -7,15 +7,15 @@ Complex::Complex(double real) : _real(real), _imag(0.0) {}
 
 Complex::Complex(double real, double imag) : _real(real), _imag(imag) {}
 
-double Complex::real() {
+double Complex::real() const {
     return _real;
 }
 
-double Complex::imag() {
+double Complex::imag() const {
     return _imag;
 }
 
-double Complex::abs() {
+double Complex::abs() const {
     return hypot(_real, _imag);
 }
 
@@ -25,15 +25,15 @@ std::string Complex::str() const {
     return tmp.str();
 }
 
-Complex Complex::operator-() {
+Complex Complex::operator-() const {
     return Complex(-_real, -_imag);
 }
 
-Complex Complex::operator~() {
+Complex Complex::operator~() const {
     return Complex(_real, -_imag);
 }
 
-Complex Complex::inverse() {
+Complex Complex::inverse() const {
     double square_abs = _real * _real + _imag * _imag;
     return Complex(_real / square_abs, -_imag / square_abs);
 }
@@ -90,7 +90,7 @@ Complex operator/(const Complex& left, const Complex& right) {
 }
 
 bool operator==(const Complex& left, const Complex& right) {
-    return (abs(left._real - right._real) < Complex::EPS) && (abs(left._imag - right._imag) < Complex::EPS);
+    return (std::abs(left._real - right._real) < Complex::EPS) && (std::abs(left._imag - right._imag) < Complex::EPS);
 }
 
 bool operator!=(const Complex& left, const Complex& right) {

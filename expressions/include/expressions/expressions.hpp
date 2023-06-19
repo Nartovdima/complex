@@ -151,7 +151,7 @@ private:
 
 class Variable: public Expression {
 public:
-    Variable(std::string variable_name);
+    Variable(std::string&& variable_name);
 
     Complex eval(const std::unordered_map<std::string, Complex> values) const;
 
