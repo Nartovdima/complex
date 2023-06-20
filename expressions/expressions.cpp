@@ -61,7 +61,7 @@ Complex Add::compute_operation(const Complex& left_operand_value, const Complex&
 }
 
 std::string Add::operation_sign() const {
-    return sign;
+    return "+";
 }
 
 Subtract::Subtract(const Expression& left_operand, const Expression& right_operand)
@@ -76,7 +76,7 @@ Complex Subtract::compute_operation(const Complex& left_operand_value, const Com
 }
 
 std::string Subtract::operation_sign() const {
-    return sign;
+    return "-";
 }
 
 Multiply::Multiply(const Expression& left_operand, const Expression& right_operand)
@@ -91,7 +91,7 @@ Complex Multiply::compute_operation(const Complex& left_operand_value, const Com
 }
 
 std::string Multiply::operation_sign() const {
-    return sign;
+    return "*";
 }
 
 Divide::Divide(const Expression& left_operand, const Expression& right_operand)
@@ -106,7 +106,7 @@ Complex Divide::compute_operation(const Complex& left_operand_value, const Compl
 }
 
 std::string Divide::operation_sign() const {
-    return sign;
+    return "/";
 }
 
 Conjugate::Conjugate(const Expression& operand) : UnaryOperation(operand) {}
@@ -120,7 +120,7 @@ Complex Conjugate::compute_operation(const Complex& operand_value) const {
 }
 
 std::string Conjugate::operation_sign() const {
-    return sign;
+    return "~";
 }
 
 Negate::Negate(const Expression& operand) : UnaryOperation(operand) {}
@@ -134,7 +134,7 @@ Complex Negate::compute_operation(const Complex& operand_value) const {
 }
 
 std::string Negate::operation_sign() const {
-    return sign;
+    return "-";
 }
 
 Add operator+(const Expression& left, const Expression& right) {

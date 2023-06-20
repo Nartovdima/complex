@@ -58,8 +58,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "+";
-
     Complex compute_operation(const Complex& left_operand_value, const Complex& right_operand_value) const;
 
     std::string operation_sign() const;
@@ -72,8 +70,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "-";
-
     Complex compute_operation(const Complex& left_operand_value, const Complex& right_operand_value) const;
 
     std::string operation_sign() const;
@@ -86,8 +82,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "*";
-
     Complex compute_operation(const Complex& left_operand_value, const Complex& right_operand_value) const;
 
     std::string operation_sign() const;
@@ -100,8 +94,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "/";
-
     Complex compute_operation(const Complex& left_operand_value, const Complex& right_operand_value) const;
 
     std::string operation_sign() const;
@@ -114,8 +106,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "~";
-
     Complex compute_operation(const Complex& operand_value) const;
 
     std::string operation_sign() const;
@@ -128,8 +118,6 @@ public:
     Expression* clone() const;
 
 private:
-    std::string sign = "-";
-
     Complex compute_operation(const Complex& operand_value) const;
 
     std::string operation_sign() const;
