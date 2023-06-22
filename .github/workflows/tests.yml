@@ -1,0 +1,65 @@
+name: CPP project with Catch2 CI
+
+on: [push]
+
+jobs:
+  formatting-check:
+    name: Formatting check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+      - name: Run clang-format style check for C/C++/Protobuf programs.
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '16'
+          check-path: '.'
+  
+  tests:
+    needs: formatting-check
+    name: Test ${{ matrix.config }}
+    runs-on: ubuntu-latest
+    container:
+      image: ubuntu:23.04
+      options: --privileged
+    env:
+      CC: clang-16
+      CXX: clang++-16
+    strategy:
+      matrix:
+        config: [
+          -DCMAKE_BUILD_TYPE=Release -DUSE_CLANG_TIDY=TRUE -DTESTS_BUILD_TYPE=NONE,
+          -DTESTS_BUILD_TYPE=ASAN -DCMAKE_BUILD_TYPE=Debug,
+          -DTESTS_BUILD_TYPE=USAN -DCMAKE_BUILD_TYPE=Debug
+        ]
+    defaults:
+      run:
+        shell: bash
+
+    steps:
+      - name: Setup dependencies
+        run: |
+          apt-get update
+          apt-get install -y git build-essential binutils clang-16 clang++-16 clang-tidy cmake ninja-build curl zip unzip tar pkg-config gdb
+          cd ..
+          git clone https://github.com/microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+          cd $GITHUB_WORKSPACE
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Build project
+        run: |
+          cd $GITHUB_WORKSPACE
+          mkdir build
+          cd build
+          cmake '-DCMAKE_TOOLCHAIN_FILE=../../vcpkg/scripts/buildsystems/vcpkg.cmake' ${{ matrix.config }} ..
+          cmake --build .
+
+      - name: Run tests
+        run: |
+          cd $GITHUB_WORKSPACE/build/test
+          ./tests
